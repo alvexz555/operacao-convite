@@ -71,23 +71,36 @@ document.addEventListener("pointerdown", (event) => {
     setTimeout(() => spawnHeart(true), i * 90);
   }
 });
+let tentativas = 0;
+const MAX_TENTATIVAS = 20;
+
 function fugir() {
-  const area = document.querySelector(".actions");
+  if (tentativas >= MAX_TENTATIVAS) return;
+
+  tentativas++;
+
   const btn = thinkBtn;
 
-  const maxX = area.clientWidth - btn.offsetWidth;
-  const maxY = area.clientHeight - btn.offsetHeight;
+  const margem = 20;
+  const maxX = window.innerWidth - btn.offsetWidth - margem;
+  const maxY = window.innerHeight - btn.offsetHeight - margem;
 
-  const x = Math.max(0, Math.random() * maxX);
-  const y = Math.max(0, Math.random() * maxY);
+  const x = margem + Math.random() * Math.max(0, maxX - margem);
+  const y = margem + Math.random() * Math.max(0, maxY - margem);
 
-  btn.style.position = "absolute";
+  btn.style.position = "fixed";
   btn.style.left = `${x}px`;
   btn.style.top = `${y}px`;
-  btn.style.transform = `rotate(${Math.random() * 8 - 4}deg)`;
+  btn.style.transform = `rotate(${Math.random() * 16 - 8}deg)`;
+
+  if (tentativas === MAX_TENTATIVAS) {
+    btn.textContent = "Tá bom, clica em mim 😭";
+    btn.style.transform = "rotate(0deg)";
+  }
 }
 
 thinkBtn.addEventListener("mouseenter", fugir);
+
 thinkBtn.addEventListener("touchstart", (event) => {
   event.preventDefault();
   fugir();
