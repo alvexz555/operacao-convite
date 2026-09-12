@@ -81,31 +81,27 @@ function fugir() {
 
   const btn = thinkBtn;
 
-  // Garante que o botão seja medido corretamente
-  btn.style.position = "fixed";
-  btn.style.zIndex = "99999";
-
   const margem = 20;
+  const maxX = window.innerWidth - btn.offsetWidth - margem;
+  const maxY = window.innerHeight - btn.offsetHeight - margem;
 
-  const largura = btn.offsetWidth;
-  const altura = btn.offsetHeight;
+  const x = margem + Math.random() * Math.max(0, maxX - margem);
+  const y = margem + Math.random() * Math.max(0, maxY - margem);
 
-  const maxX = window.innerWidth - largura - margem;
-  const maxY = window.innerHeight - altura - margem;
-
-  const x = margem + Math.random() * Math.max(1, maxX - margem);
-  const y = margem + Math.random() * Math.max(1, maxY - margem);
-
+  btn.style.position = "fixed";
   btn.style.left = `${x}px`;
   btn.style.top = `${y}px`;
   btn.style.transform = `rotate(${Math.random() * 16 - 8}deg)`;
 
-  // Última tentativa
-if (tentativas === MAX_TENTATIVAS) {
-  btn.textContent = "Tá bom 😭";
-
-  setTimeout(() => {
-    btn.style.opacity = "0";
-    btn.style.pointerEvents = "none";
-  }, 250);
+  if (tentativas === MAX_TENTATIVAS) {
+    btn.textContent = "Tá bom, clica em mim 😭";
+    btn.style.transform = "rotate(0deg)";
+  }
 }
+
+thinkBtn.addEventListener("mouseenter", fugir);
+
+thinkBtn.addEventListener("touchstart", (event) => {
+  event.preventDefault();
+  fugir();
+});
