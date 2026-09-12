@@ -349,7 +349,9 @@ h1 span {
   min-height: 123px;
 }
 #thinkBtn {
-  position: relative;
-  z-index: 9999;
-  transition: left 0.18s ease, top 0.18s ease, transform 0.18s ease;
+  z-index: 99999;
+  transition:
+    left 0.18s ease,
+    top 0.18s ease,
+    transform 0.18s ease;
 }
