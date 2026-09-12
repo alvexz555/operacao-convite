@@ -1,0 +1,346 @@
+:root {
+  --pink: #e83e78;
+  --pink-dark: #b51f56;
+  --rose: #f7a8c7;
+  --cream: #fffaf4;
+  --ink: #341b27;
+  --muted: #765967;
+  --white: rgba(255,255,255,.88);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #f4a6c7;
+}
+
+button {
+  font: inherit;
+}
+
+.scene {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 28px 18px;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.45), transparent 28%),
+    radial-gradient(circle at 85% 75%, rgba(255,255,255,.25), transparent 32%),
+    linear-gradient(135deg, #f7b5d0 0%, #ee9fc5 48%, #eaa6d2 100%);
+}
+
+.scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  opacity: .18;
+  background-image: radial-gradient(rgba(100,30,65,.35) .7px, transparent .7px);
+  background-size: 7px 7px;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: .3;
+  z-index: -2;
+}
+
+.glow-one {
+  top: -130px;
+  left: -100px;
+  background: #fff;
+}
+
+.glow-two {
+  right: -120px;
+  bottom: -100px;
+  background: #ffd6e6;
+}
+
+.content,
+.result {
+  width: min(100%, 520px);
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: rgba(70, 26, 47, .7);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.eyebrow span {
+  margin: 0 5px;
+}
+
+.card,
+.result-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 30px;
+  padding: 42px 24px 30px;
+  background: rgba(255,250,244,.92);
+  box-shadow:
+    0 24px 70px rgba(112, 31, 71, .20),
+    0 4px 14px rgba(112, 31, 71, .08);
+  backdrop-filter: blur(12px);
+  transform: translateY(12px);
+  opacity: 0;
+  animation: cardIn .75s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.card::after,
+.result-card::after {
+  content: "♡";
+  position: absolute;
+  right: 18px;
+  top: 8px;
+  color: rgba(232,62,120,.09);
+  font-size: 8rem;
+  line-height: 1;
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+
+.heart-badge {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: white;
+  background: linear-gradient(145deg, #ef5d91, #d82e6e);
+  box-shadow: 0 12px 24px rgba(216,46,110,.25);
+  font-size: 1.5rem;
+  transform: rotate(-6deg);
+}
+
+.mini {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(3rem, 13vw, 5.3rem);
+  line-height: .92;
+  letter-spacing: -.065em;
+}
+
+h1 span {
+  color: var(--pink);
+}
+
+.subtext {
+  position: relative;
+  z-index: 1;
+  margin: 22px auto 26px;
+  max-width: 360px;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: .95rem;
+}
+
+.actions {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 11px;
+}
+
+.btn {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  border-radius: 17px;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(.97);
+}
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(135deg, #ed4f87, #d7286a);
+  box-shadow: 0 12px 24px rgba(215,40,106,.25);
+}
+
+.btn-secondary {
+  color: #6b3d50;
+  border: 1px solid rgba(181,31,86,.16);
+  background: rgba(255,255,255,.7);
+}
+
+.btn:hover {
+  filter: brightness(1.03);
+  transform: translateY(-2px);
+}
+
+.tiny {
+  position: relative;
+  z-index: 1;
+  margin: 18px 0 0;
+  color: rgba(118,89,103,.7);
+  font-size: .73rem;
+}
+
+.signature {
+  margin: 15px 0 0;
+  color: rgba(70,26,47,.55);
+  font-size: .72rem;
+  letter-spacing: .08em;
+}
+
+.result {
+  animation: fadeIn .4s ease forwards;
+}
+
+.result-card {
+  padding: 46px 26px 32px;
+  transform: none;
+  opacity: 1;
+}
+
+.result-icon {
+  position: relative;
+  z-index: 1;
+  font-size: 3.2rem;
+  margin-bottom: 12px;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.result-card h2,
+.result-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.result-card h2 {
+  margin: 0 auto;
+  max-width: 420px;
+  font-size: clamp(2rem, 9vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+.result-card > p:not(.eyebrow) {
+  max-width: 380px;
+  margin: 18px auto 25px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.result-card .btn {
+  position: relative;
+  z-index: 2;
+  max-width: 220px;
+}
+
+.hidden {
+  display: none;
+}
+
+.hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  bottom: -40px;
+  font-size: var(--size);
+  opacity: 0;
+  animation: floatUp var(--duration) linear forwards;
+  filter: drop-shadow(0 4px 5px rgba(100,20,60,.1));
+}
+
+@keyframes cardIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(.7);
+    opacity: 0;
+  }
+  10% { opacity: .85; }
+  100% {
+    transform: translate3d(var(--drift), -115svh, 0) rotate(var(--rotation)) scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.12) rotate(-3deg); }
+}
+
+@media (min-width: 700px) {
+  .scene {
+    padding: 50px;
+  }
+
+  .card,
+  .result-card {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .btn-secondary {
+    order: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
