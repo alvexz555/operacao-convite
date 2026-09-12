@@ -344,3 +344,12 @@ h1 span {
     scroll-behavior: auto !important;
   }
 }
+.actions {
+  position: relative;
+  min-height: 123px;
+}
+
+#thinkBtn {
+  position: relative;
+  transition: left .2s ease, top .2s ease, transform .2s ease;
+}
