@@ -101,8 +101,11 @@ function fugir() {
   btn.style.transform = `rotate(${Math.random() * 16 - 8}deg)`;
 
   // Última tentativa
-  if (tentativas === MAX_TENTATIVAS) {
-    btn.textContent = "Tá bom 😭";
-    btn.style.transform = "rotate(0deg)";
-  }
+if (tentativas === MAX_TENTATIVAS) {
+  btn.textContent = "Tá bom 😭";
+
+  setTimeout(() => {
+    btn.style.opacity = "0";
+    btn.style.pointerEvents = "none";
+  }, 250);
 }
