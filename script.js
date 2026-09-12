@@ -71,3 +71,24 @@ document.addEventListener("pointerdown", (event) => {
     setTimeout(() => spawnHeart(true), i * 90);
   }
 });
+function fugir() {
+  const area = document.querySelector(".actions");
+  const btn = thinkBtn;
+
+  const maxX = area.clientWidth - btn.offsetWidth;
+  const maxY = area.clientHeight - btn.offsetHeight;
+
+  const x = Math.max(0, Math.random() * maxX);
+  const y = Math.max(0, Math.random() * maxY);
+
+  btn.style.position = "absolute";
+  btn.style.left = `${x}px`;
+  btn.style.top = `${y}px`;
+  btn.style.transform = `rotate(${Math.random() * 8 - 4}deg)`;
+}
+
+thinkBtn.addEventListener("mouseenter", fugir);
+thinkBtn.addEventListener("touchstart", (event) => {
+  event.preventDefault();
+  fugir();
+});
